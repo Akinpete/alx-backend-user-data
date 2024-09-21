@@ -31,7 +31,8 @@ class Auth:
         # Normalize the path by removing trailing slashes
         normalized_path = path.rstrip('/')
 
-        # Step 3: Loop through excluded_paths and check if normalized path matches
+        # Step 3: Loop through excluded_paths and
+        # check if normalized path matches
         for excluded_path in excluded_paths:
             normalized_excluded_path = excluded_path.rstrip('/')
             if normalized_path == normalized_excluded_path:
@@ -39,7 +40,6 @@ class Auth:
 
         # If no match found, return True (authentication required)
         return True
-            
 
     def authorization_header(self, request=None) -> str:
         """
