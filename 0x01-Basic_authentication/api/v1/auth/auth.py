@@ -8,7 +8,7 @@ from flask import request
 
 class Auth:
     """
-    API Auth management class
+    Base API Auth management class
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
