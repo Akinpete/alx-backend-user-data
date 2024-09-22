@@ -37,6 +37,11 @@ class Auth:
             normalized_excluded_path = excluded_path.rstrip('/')
             if normalized_path == normalized_excluded_path:
                 return False
+            # Check for wildcard match
+            if excluded_path.endswith('*'):
+                if normalized_path.startswith(normalized_excluded_path[:-2]):  # Remove '/*' from the end
+                    return False
+        
 
         # If no match found, return True (authentication required)
         return True
