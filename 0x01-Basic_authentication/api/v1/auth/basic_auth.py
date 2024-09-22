@@ -13,7 +13,7 @@ class BasicAuth(Auth):
     """
     Basic API Auth management class
     """
-    def extract_base64_authorization_header(self, 
+    def extract_base64_authorization_header(self,
                                             authorization_header: str) -> str:
         """
         Extracts the Base64 part of the Authorization header for a Basic
@@ -27,7 +27,7 @@ class BasicAuth(Auth):
             return None
         token = authorization_header.split(" ")[-1]
         return token
-    
+
     def decode_base64_authorization_header(self,
                                            base64_authorization_header:
                                            str) -> str:
