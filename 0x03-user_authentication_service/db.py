@@ -71,12 +71,13 @@ class DB:
         user = self.find_user_by(**finder)
         if user:
             for key, value in kwargs.items():
-                setattr(user, key, value)
-                try:
-                    self._session.commit()
-                except Exception as e:
-                    self._session.rollback()
-                    print(f"Error adding user: {e}")
-        else:
-            raise ValueError("No valid arguments")
+                if hasattr(user, key):
+                    setattr(user, key, value)
+                else:
+                    raise ValueError(f"{key} is not a valid attribute of User")
+            try:
+                self._session.commit()
+            except Exception as e:
+                self._session.rollback()
+                print(f"Error adding user: {e}")
         return None
