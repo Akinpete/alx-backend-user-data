@@ -61,3 +61,22 @@ class DB:
         except InvalidRequestError:
             raise InvalidRequestError("Invalid query argument(s) provided.")
         return user
+
+    def update_user(self, user_id, **kwargs) -> None:
+        """
+        Updates a user by user_id &
+        arbitrary keyword arguments.
+        """
+        finder = {"id": user_id}
+        user = self.find_user_by(**finder)
+        if user:
+            for key, value in kwargs.items():
+                setattr(user, key, value)
+                try:
+                    self._session.commit()
+                except Exception as e:
+                    self._session.rollback()
+                    print(f"Error adding user: {e}")
+        else:
+            raise ValueError("No valid arguments")
+        return None
