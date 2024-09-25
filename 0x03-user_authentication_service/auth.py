@@ -122,3 +122,16 @@ class Auth:
             print(f"User with id {user_id} not found")
         except Exception as e:
             print(e)
+
+    def get_reset_password_token(self, email):
+        """
+        Generate reset password token
+        """
+        reset_token = str(uuid.uuid4())
+        try:
+            user = self._db.find_user_by(email=email)
+
+            self._db.update_user(user.id, reset_token=reset_token)
+            return reset_token
+        except NoResultFound:
+            raise ValueError("User not found!")
