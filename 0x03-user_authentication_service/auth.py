@@ -107,10 +107,10 @@ class Auth:
     def destroy_session(self, user_id):
         """
         Updates the session_id of the user to None to log out the session.
-    
+
         Args:
             user_id (int): The ID of the user whose session will be destroyed.
-    
+
         Returns:
             None
         """
