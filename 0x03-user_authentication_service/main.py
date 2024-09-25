@@ -126,12 +126,12 @@ def update_password(email: str, reset_token: str,
     r = requests.put('http://127.0.0.1:5000/reset_password',
                      data=data)
     # print(f"Response status: {r.status_code}")
-    
+
     # try:
     #     print(f"Response body: {r.json()}")
     # except requests.exceptions.JSONDecodeError:
     #     print(f"Non-JSON response body: {r.text}")
-    
+
     if r.status_code == 200:
         assert(r.json() == {"email": email, "message": "Password updated"})
     else:
