@@ -27,7 +27,6 @@ def users():
             return jsonify({"email": email, "message": "user created"}), 201
         except ValueError as err:
             return jsonify({"message": "email already registered"}), 400
-
     return jsonify({"message": "email and password required"}), 400
 
 
@@ -89,7 +88,7 @@ def update_password():
     if email and reset_token and new_password:
         try:
             AUTH.update_password(reset_token=reset_token,
-                                 new_password=new_password)
+                                 password=new_password)
             return jsonify({"email": email, "message":
                             "Password updated"}), 200
         except ValueError:
